@@ -5,6 +5,7 @@ namespace DataAccessLayer.Entities
     public class CustomerEntity : BaseEntity
     {
         #region Properties
+        
         public string Name { get; set; }
 
         public string ContactEmail { get; set; }
