@@ -12,7 +12,7 @@ namespace BusinessLogicLayer.DataTransferObjects
 
         public DateTime Date { get; set; }
 
-        public Double Amount { get; set; }
+        public Decimal Amount { get; set; }
 
         public String Currency { get; set; }
 
