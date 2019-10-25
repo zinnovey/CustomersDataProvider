@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
 {
-    public class CustomerDataContext : DbContext
+    public class CustomersDBContext : DbContext
     {
         #region Properties
 
@@ -18,11 +18,11 @@ namespace DataAccessLayer
 
         #region Constructors
 
-        public CustomerDataContext()
+        public CustomersDBContext()
         {
         }
 
-        public CustomerDataContext(DbContextOptions<CustomerDataContext> options)
+        public CustomersDBContext(DbContextOptions<CustomersDBContext> options)
             : base(options)
         {
         }
