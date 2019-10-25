@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Customers] (
 CREATE TABLE [dbo].[Transactions] (
     [TransactionID]       INT         IDENTITY (1, 1) NOT NULL,
     [CustomerID]          INT         NOT NULL,
-    [TransactionDateTime] DATETIME    NOT NULL,
+    [TransactionDateTime] SMALLDATETIME    NOT NULL,
     [TransactionAmount]   DECIMAL (38, 2) NOT NULL,
     [TransactionCurrency] INT         NOT NULL,
     [TransactionStatus]   INT         NOT NULL,
