@@ -1,9 +1,11 @@
-﻿using DataAccessLayer.Configuration;
+﻿using System.Diagnostics.CodeAnalysis;
+using DataAccessLayer.Configuration;
 using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomersDBContext : DbContext
     {
         #region Properties
