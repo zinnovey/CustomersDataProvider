@@ -27,7 +27,7 @@ namespace DataAccessLayer
 
         #endregion
 
-        #region Public
+        #region ICustomerRepository
 
         public IQueryable<CustomerEntity> Get(Expression<Func<CustomerEntity, Boolean>> filter = null)
         {
@@ -45,6 +45,10 @@ namespace DataAccessLayer
             return await _customersDbSet.FindAsync(id)
                 .ConfigureAwait(false);
         }
+
+        #endregion
+
+        #region IDisposable
 
         public void Dispose()
         {
