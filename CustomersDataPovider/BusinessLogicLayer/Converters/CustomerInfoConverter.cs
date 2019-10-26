@@ -23,6 +23,7 @@ namespace BusinessLogicLayer.Converters
         #endregion
 
         #region Private
+        
         private static TransactionDTO ConvertTransaction(TransactionEntity transactionEntity) =>
             new TransactionDTO
             {
