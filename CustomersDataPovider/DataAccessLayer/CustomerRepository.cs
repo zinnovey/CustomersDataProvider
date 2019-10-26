@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,9 +39,10 @@ namespace DataAccessLayer
             return query;
         }
 
-        public CustomerEntity GetById(Int32 id)
+        public async Task<CustomerEntity> GetByIdAsync(Int32 id)
         {
-            return _customersDbSet.Find(id);
+            return await _customersDbSet.FindAsync(id)
+                .ConfigureAwait(false);
         }
 
         public void Dispose()
