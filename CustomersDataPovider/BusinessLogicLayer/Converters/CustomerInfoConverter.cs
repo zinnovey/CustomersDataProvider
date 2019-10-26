@@ -10,14 +10,14 @@ namespace BusinessLogicLayer.Converters
     {
         #region Public
 
-        public static CustomerDTO ConvertCustomerInfo(CustomerEntity customerEntity, IEnumerable<TransactionEntity> transactionEntities) =>
+        public static CustomerDTO ConvertCustomerInfo(CustomerEntity customerEntity) =>
             new CustomerDTO
             {
                 CustomerID = customerEntity.Id,
                 Name = customerEntity.Name,
                 Email = customerEntity.ContactEmail,
                 Mobile = customerEntity.MobileNumber.ToString(CultureInfo.InvariantCulture),
-                Transactions = transactionEntities.Select(ConvertTransaction).ToList()
+                Transactions = customerEntity.Transactions.Select(ConvertTransaction).ToList()
             };
 
         #endregion
