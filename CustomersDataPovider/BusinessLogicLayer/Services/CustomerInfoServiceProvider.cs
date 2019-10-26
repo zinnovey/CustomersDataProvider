@@ -1,6 +1,8 @@
-﻿using BusinessLogicLayer.Converters;
+﻿using BusinessLogicLayer.Abstraction;
+using BusinessLogicLayer.Converters;
 using BusinessLogicLayer.DataTransferObjects;
 using DataAccessLayer;
+using DataAccessLayer.Abstraction;
 using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services
 {
-    public class CustomerInfoServiceProvider
+    public class CustomerInfoServiceProvider : ICustomerInfoServiceProvider
     {
-        private CustomerRepository _customerRepository;
+        private ICustomerRepository _customerRepository;
 
-        public CustomerInfoServiceProvider(CustomerRepository customerRepository)
+        public CustomerInfoServiceProvider(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }

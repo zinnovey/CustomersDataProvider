@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogicLayer.Abstraction;
 using BusinessLogicLayer.Services;
 using DataAccessLayer;
+using DataAccessLayer.Abstraction;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +30,8 @@ namespace CustomersDataPovider
         {
             services.AddControllers();
             services.AddSingleton<CustomersDBContext>();
-            services.AddSingleton<CustomerRepository>();
-            services.AddSingleton<CustomerInfoServiceProvider>();
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using DataAccessLayer.Abstraction;
 using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer
 {
-    public sealed class CustomerRepository : IDisposable
+    public sealed class CustomerRepository : ICustomerRepository, IDisposable
     {
         #region Fields
 
