@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicLayer.DataTransferObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,13 +10,12 @@ namespace BusinessLogicLayer.Validators
     {
         #region Constants
 
-        private const String EmailRegex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
         private const Int32 MaxCustomerIdLength = 10;
-
-        private const String CustomerIdLengthError = "";
-        private const String CustomerIdCharactersError = "";
-
-        private const String CustomerEmailError = "";
+        private const String EmailRegex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+        
+        private const String NoCriteriaError = "No inquiry criteria!";
+        private const String InvalidCustomerIdError = "Invalid Customer ID!";
+        private const String InvalidCustomerEmailError = "Invalid Email!";
 
         #endregion
 
@@ -25,45 +25,44 @@ namespace BusinessLogicLayer.Validators
 
         #endregion
 
-        #region Public 
+        #region Public
 
-        public Boolean ValidateCustomerId(String customerId, out ICollection<String> errors)
+        public Boolean ValidateQueryParameters(CustomerInfoCriteriaDTO criteria, out ICollection<String> errors)
         {
-            var validationErrors = new List<String>();
+            errors = new List<String>();
 
+            if (String.IsNullOrEmpty(criteria.CustomerID) && String.IsNullOrEmpty(criteria.Email))
+            {
+                errors.Add(NoCriteriaError);
+                return false;
+            }
+
+            if (!String.IsNullOrEmpty(criteria.CustomerID) && !IsCustomerIdValid(criteria.CustomerID))
+                errors.Add(InvalidCustomerIdError);
+
+            if (!String.IsNullOrEmpty(criteria.Email) && !IsCustomerEmailValid(criteria.Email))
+                errors.Add(InvalidCustomerEmailError);
+
+            return !errors.Any();
+        }
+
+        #endregion
+
+        #region Private 
+
+        private Boolean IsCustomerIdValid(String customerId)
+        {
             if (customerId.Length > MaxCustomerIdLength)
-                validationErrors.Add(CustomerIdLengthError);
+                return false;
 
             if (!customerId.ToCharArray().All(Char.IsDigit))
-                validationErrors.Add(CustomerIdCharactersError);
+                return false;
 
-            errors = validationErrors;
-            return !errors.Any();
+            return true;
         }
 
-        public Boolean ValidateCustomerEmail(String customerEmail, out ICollection<String> errors)
-        {
-            errors = new List<String>();
-
-            if (!_emailRegex.IsMatch(customerEmail))
-                errors.Add(CustomerEmailError);
-
-            return !errors.Any();
-        }
-
-        public Boolean ValidateQueryParameters(String customerId, String customerEmail, out ICollection<String> errors)
-        {
-            errors = new List<String>();
-
-            if (!ValidateCustomerId(customerId, out ICollection<String> customerIdErrors))
-                errors.ToList().AddRange(customerIdErrors);
-
-            if (!ValidateCustomerEmail(customerEmail, out ICollection<String> customerEmailErrors))
-                errors.ToList().AddRange(customerEmailErrors);
-
-            return !errors.Any();
-
-        }
+        private Boolean IsCustomerEmailValid(String customerEmail) 
+            => _emailRegex.IsMatch(customerEmail);
 
         #endregion
 
