@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogicLayer.Abstraction;
+using BusinessLogicLayer.DataTransferObjects;
+using BusinessLogicLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,23 +18,31 @@ namespace CustomersDataPovider.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ICustomerInfoServiceProvider _customerInfoServiceProvider;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ICustomerInfoServiceProvider customerInfoServiceProvider)
         {
             _logger = logger;
+            _customerInfoServiceProvider = customerInfoServiceProvider;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<String> Get()
         {
-            var rng = new Random();
+            var criteria = new CustomerInfoCriteriaDTO() 
+            { 
+                CustomerID = "1"
+            };
+            var customer =  await _customerInfoServiceProvider.GetCustomerInfoAsync(criteria).ConfigureAwait(false);
+            return customer.ToString();
+            /*var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
-            .ToArray();
+            .ToArray();*/
         }
     }
 }
