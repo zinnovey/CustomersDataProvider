@@ -13,8 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccessLayerTests\" />
     <Folder Include="BusinessLogicLayerTests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\CustomersDataProvider.DataAccessLayer.csproj" />
   </ItemGroup>
 
 </Project>
