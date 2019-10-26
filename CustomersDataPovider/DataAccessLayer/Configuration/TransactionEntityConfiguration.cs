@@ -6,7 +6,7 @@ namespace DataAccessLayer.Configuration
 {
     class TransactionEntityConfiguration : IEntityTypeConfiguration<TransactionEntity>
     {
-        #region IEntityTypeConfiguration members
+        #region IEntityTypeConfiguration
 
         public void Configure(EntityTypeBuilder<TransactionEntity> builder)
         {

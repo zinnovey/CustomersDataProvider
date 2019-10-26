@@ -6,7 +6,7 @@ namespace DataAccessLayer.Configuration
 {
     class MigrationHistoryConfiguration : IEntityTypeConfiguration<MigrationHistory>
     {
-        #region IEntityTypeConfiguration members
+        #region IEntityTypeConfiguration
 
         public void Configure(EntityTypeBuilder<MigrationHistory> builder)
         {

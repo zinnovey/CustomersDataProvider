@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BusinessLogicLayer.Abstraction;
 using BusinessLogicLayer.Services;
+using BusinessLogicLayer.Validators;
 using DataAccessLayer;
+using DataAccessLayer.Abstraction;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace CustomersDataPovider
 {
@@ -28,8 +25,9 @@ namespace CustomersDataPovider
         {
             services.AddControllers();
             services.AddSingleton<CustomersDBContext>();
-            services.AddSingleton<CustomerRepository>();
-            services.AddSingleton<CustomerInfoServiceProvider>();
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<IQueryParametersValidator, QueryParametersValidator>();
+            services.AddSingleton<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

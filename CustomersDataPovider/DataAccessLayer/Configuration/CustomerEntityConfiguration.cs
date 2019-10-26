@@ -6,7 +6,7 @@ namespace DataAccessLayer.Configuration
 {
     class CustomerEntityConfiguration : IEntityTypeConfiguration<CustomerEntity>
     {
-        #region IEntityTypeConfiguration members
+        #region IEntityTypeConfiguration
         
         public void Configure(EntityTypeBuilder<CustomerEntity> builder)
         {

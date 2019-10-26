@@ -1,12 +1,13 @@
-﻿using BusinessLogicLayer.DataTransferObjects;
-using System;
+﻿using System;
+using BusinessLogicLayer.DataTransferObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using BusinessLogicLayer.Abstraction;
 
 namespace BusinessLogicLayer.Validators
 {
-    public class QueryParametersValidator
+    public class QueryParametersValidator : IQueryParametersValidator
     {
         #region Constants
 
@@ -25,7 +26,7 @@ namespace BusinessLogicLayer.Validators
 
         #endregion
 
-        #region Public
+        #region IQueryParametersValidator
 
         public Boolean ValidateQueryParameters(CustomerInfoCriteriaDTO criteria, out ICollection<String> errors)
         {

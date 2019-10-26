@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BusinessLogicLayer.DataTransferObjects
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomerInfoCriteriaDTO
     {
         #region Properties

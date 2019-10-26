@@ -1,26 +1,38 @@
-﻿using BusinessLogicLayer.Converters;
+﻿using System;
+using BusinessLogicLayer.Abstraction;
+using BusinessLogicLayer.Converters;
 using BusinessLogicLayer.DataTransferObjects;
-using DataAccessLayer;
+using DataAccessLayer.Abstraction;
 using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services
 {
-    public class CustomerInfoServiceProvider
+    public class CustomerInfoServiceProvider : ICustomerInfoServiceProvider
     {
-        private CustomerRepository _customerRepository;
+        #region Fields
 
-        public CustomerInfoServiceProvider(CustomerRepository customerRepository)
+        private ICustomerRepository _customerRepository;
+
+        #endregion
+
+        #region Constructors
+
+        public CustomerInfoServiceProvider(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
+
+        #endregion
+
+        #region ICustomerInfoServiceProvider
 
         public async Task<CustomerDTO> GetCustomerInfoAsync(CustomerInfoCriteriaDTO criteria)
         {
             CustomerEntity customerEntity;
 
+            //TODO: add logic for getting latest 5 trasactions
             if (!String.IsNullOrEmpty(criteria.CustomerID))
             {
                 customerEntity = await _customerRepository.Get(x => x.Id == Int32.Parse(criteria.CustomerID))
@@ -43,5 +55,8 @@ namespace BusinessLogicLayer.Services
 
             return CustomerInfoConverter.ConvertCustomerInfo(customerEntity);
         }
+
+        #endregion
+
     }
 }
