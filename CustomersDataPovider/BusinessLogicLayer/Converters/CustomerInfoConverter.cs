@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Linq;
-using BusinessLogicLayer.DataTransferObjects;
-using DataAccessLayer.Entities;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
+using CustomersDataProvider.DataAccessLayer.Entities;
 
-namespace BusinessLogicLayer.Converters
+namespace CustomersDataProvider.BusinessLogicLayer.Converters
 {
     class CustomerInfoConverter
     {

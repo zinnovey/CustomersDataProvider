@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataAccessLayer.Entities.Enums
+namespace CustomersDataProvider.DataAccessLayer.Entities.Enums
 {
     [Flags]
     public enum TransactionStatus

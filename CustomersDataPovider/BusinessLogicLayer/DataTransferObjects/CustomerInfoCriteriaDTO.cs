@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BusinessLogicLayer.DataTransferObjects
+namespace CustomersDataProvider.BusinessLogicLayer.DataTransferObjects
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomerInfoCriteriaDTO

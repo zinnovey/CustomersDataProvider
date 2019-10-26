@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace DataAccessLayer.Entities.Enums
+namespace CustomersDataProvider.DataAccessLayer.Entities.Enums
 {
     [Flags]
     [SuppressMessage("ReSharper", "InconsistentNaming")]

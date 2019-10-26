@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BusinessLogicLayer.Abstraction;
-using BusinessLogicLayer.DataTransferObjects;
-using BusinessLogicLayer.Services;
+using CustomersDataProvider.BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace CustomersDataPovider.Controllers
+namespace CustomersDataPovider.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

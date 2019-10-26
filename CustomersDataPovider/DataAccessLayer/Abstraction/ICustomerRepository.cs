@@ -1,10 +1,10 @@
-﻿using DataAccessLayer.Entities;
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using CustomersDataProvider.DataAccessLayer.Entities;
 
-namespace DataAccessLayer.Abstraction
+namespace CustomersDataProvider.DataAccessLayer.Abstraction
 {
     public interface ICustomerRepository
     {

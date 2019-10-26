@@ -1,11 +1,11 @@
 ﻿using System;
-using BusinessLogicLayer.DataTransferObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 
-namespace BusinessLogicLayer.Validators
+namespace CustomersDataProvider.BusinessLogicLayer.Validators
 {
     public class QueryParametersValidator : IQueryParametersValidator
     {
@@ -22,7 +22,7 @@ namespace BusinessLogicLayer.Validators
 
         #region Fields
 
-        private Regex _emailRegex = new Regex(EmailRegex);
+        private readonly Regex _emailRegex = new Regex(EmailRegex);
 
         #endregion
 

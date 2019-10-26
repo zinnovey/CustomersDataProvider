@@ -1,8 +1,8 @@
-﻿using BusinessLogicLayer.DataTransferObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 
-namespace BusinessLogicLayer.Abstraction
+namespace CustomersDataProvider.BusinessLogicLayer.Abstraction
 {
     public interface IQueryParametersValidator
     {

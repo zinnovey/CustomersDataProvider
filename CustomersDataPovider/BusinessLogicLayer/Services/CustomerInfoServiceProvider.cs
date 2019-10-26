@@ -1,13 +1,13 @@
 ﻿using System;
-using BusinessLogicLayer.Abstraction;
-using BusinessLogicLayer.Converters;
-using BusinessLogicLayer.DataTransferObjects;
-using DataAccessLayer.Abstraction;
-using DataAccessLayer.Entities;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using CustomersDataProvider.BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.Converters;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
+using CustomersDataProvider.DataAccessLayer.Abstraction;
+using CustomersDataProvider.DataAccessLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace BusinessLogicLayer.Services
+namespace CustomersDataProvider.BusinessLogicLayer.Services
 {
     public class CustomerInfoServiceProvider : ICustomerInfoServiceProvider
     {

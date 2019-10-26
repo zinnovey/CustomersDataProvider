@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BusinessLogicLayer.DataTransferObjects
+namespace CustomersDataProvider.BusinessLogicLayer.DataTransferObjects
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomerDTO

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataAccessLayer.Entities
+namespace CustomersDataProvider.DataAccessLayer.Entities
 {
     public class CustomerEntity : BaseEntity
     {
