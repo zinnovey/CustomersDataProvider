@@ -32,6 +32,7 @@ namespace BusinessLogicLayer.Services
         {
             CustomerEntity customerEntity;
 
+            //TODO: add logic for getting latest 5 trasactions
             if (!String.IsNullOrEmpty(criteria.CustomerID))
             {
                 customerEntity = await _customerRepository.Get(x => x.Id == Int32.Parse(criteria.CustomerID))
