@@ -190,9 +190,9 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
             // ReSharper disable once InconsistentNaming
             var transactionDTO = customerDTO.Transactions.First();
 
-            Assert.AreEqual(1, transactionDTO.Id);
-            Assert.AreEqual(new DateTime(2007, 5, 8, 12, 35, 0), transactionDTO.Date);
-            Assert.AreEqual(151345.54m, transactionDTO.Amount);
+            Assert.AreEqual(6, transactionDTO.Id);
+            Assert.AreEqual(new DateTime(2007, 5, 8, 12, 36, 0), transactionDTO.Date);
+            Assert.AreEqual(4634.43m, transactionDTO.Amount);
             Assert.AreEqual(Currency.EUR.ToString(), transactionDTO.Currency);
             Assert.AreEqual(TransactionStatus.Success.ToString(), transactionDTO.Status);
         }

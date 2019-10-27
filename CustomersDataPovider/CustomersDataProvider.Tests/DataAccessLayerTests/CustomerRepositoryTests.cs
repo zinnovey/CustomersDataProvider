@@ -98,7 +98,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
             Assert.NotNull(transaction);
 
             Assert.AreEqual(1, transaction.CustomerId);
-            Assert.AreEqual(new DateTime(2007,5, 8, 12,35,0), transaction.DateTime);
+            Assert.AreEqual(new DateTime(2007,5, 8, 12,34,0), transaction.DateTime);
             Assert.AreEqual(151345.54, transaction.Amount);
             Assert.AreEqual(Currency.EUR, transaction.Currency);
             Assert.AreEqual(TransactionStatus.Success, transaction.Status);
