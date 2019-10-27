@@ -5,7 +5,9 @@ using CustomersDataProvider.BusinessLogicLayer.Abstraction;
 using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 using CustomersDataProvider.BusinessLogicLayer.Services;
 using CustomersDataProvider.DataAccessLayer;
+using CustomersDataProvider.DataAccessLayer.Entities;
 using CustomersDataProvider.DataAccessLayer.Entities.Enums;
+using CustomersDataProvider.DataAccessLayer.Repositories;
 using NUnit.Framework;
 
 namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
@@ -15,16 +17,22 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
     {
         #region Fields
 
-        private ICustomerInfoServiceProvider _customerInfoServiceProvider;
+        private ICustomerInfoProviderService _customerInfoServiceProvider;
 
         #endregion
 
         #region SetUp
-        
+
         [OneTimeSetUp]
-        public void OneTimeSetUp() =>
-            _customerInfoServiceProvider 
-                = new CustomerInfoServiceProvider(new CustomerRepository(new CustomersDBContext()));
+        public void OneTimeSetUp()
+        {
+            var dbContext = new CustomersDBContext();
+            _customerInfoServiceProvider
+                = new CustomerInfoProviderService(
+                    new GenericRepository<CustomerEntity>(dbContext),
+                    new GenericRepository<TransactionEntity>(dbContext));
+        }
+            
 
         #endregion
 
@@ -182,9 +190,9 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
             // ReSharper disable once InconsistentNaming
             var transactionDTO = customerDTO.Transactions.First();
 
-            Assert.AreEqual(1, transactionDTO.Id);
-            Assert.AreEqual(new DateTime(2007, 5, 8, 12, 35, 0), transactionDTO.Date);
-            Assert.AreEqual(151345.54m, transactionDTO.Amount);
+            Assert.AreEqual(6, transactionDTO.Id);
+            Assert.AreEqual(new DateTime(2007, 5, 8, 12, 36, 0), transactionDTO.Date);
+            Assert.AreEqual(4634.43m, transactionDTO.Amount);
             Assert.AreEqual(Currency.EUR.ToString(), transactionDTO.Currency);
             Assert.AreEqual(TransactionStatus.Success.ToString(), transactionDTO.Status);
         }

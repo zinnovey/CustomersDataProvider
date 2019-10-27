@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using CustomersDataProvider.DataAccessLayer;
 using CustomersDataProvider.DataAccessLayer.Abstraction;
+using CustomersDataProvider.DataAccessLayer.Entities;
 using CustomersDataProvider.DataAccessLayer.Entities.Enums;
+using CustomersDataProvider.DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
@@ -14,7 +16,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
     {
         #region Fields
 
-        private ICustomerRepository _customerRepository;
+        private IRepository<CustomerEntity> _customerRepository;
 
         #endregion
 
@@ -22,7 +24,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
 
         [OneTimeSetUp]
         public void OneTimeSetUp() 
-            => _customerRepository = new CustomerRepository(new CustomersDBContext());
+            => _customerRepository = new GenericRepository<CustomerEntity>(new CustomersDBContext());
 
         #endregion
 
@@ -96,7 +98,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
             Assert.NotNull(transaction);
 
             Assert.AreEqual(1, transaction.CustomerId);
-            Assert.AreEqual(new DateTime(2007,5, 8, 12,35,0), transaction.DateTime);
+            Assert.AreEqual(new DateTime(2007,5, 8, 12,34,0), transaction.DateTime);
             Assert.AreEqual(151345.54, transaction.Amount);
             Assert.AreEqual(Currency.EUR, transaction.Currency);
             Assert.AreEqual(TransactionStatus.Success, transaction.Status);

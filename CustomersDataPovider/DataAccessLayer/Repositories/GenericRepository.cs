@@ -6,43 +6,45 @@ using CustomersDataProvider.DataAccessLayer.Abstraction;
 using CustomersDataProvider.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomersDataProvider.DataAccessLayer
+namespace CustomersDataProvider.DataAccessLayer.Repositories
 {
-    public sealed class CustomerRepository : ICustomerRepository, IDisposable
+    public class GenericRepository<T> : IRepository<T>
+        where T : BaseEntity
     {
         #region Fields
 
         private readonly CustomersDBContext _dbContext;
-        private readonly DbSet<CustomerEntity> _customersDbSet;
+        private readonly DbSet<T> _dbSet;
 
         #endregion
 
         #region Constructors
 
-        public CustomerRepository(CustomersDBContext dbContext)
+        public GenericRepository(CustomersDBContext dbContext)
         {
             _dbContext = dbContext;
-            _customersDbSet = _dbContext.Customers;
+            _dbSet = _dbContext.Set<T>();
         }
 
         #endregion
 
-        #region ICustomerRepository
+        #region IRepository
 
-        public IQueryable<CustomerEntity> Get(Expression<Func<CustomerEntity, Boolean>> filter = null)
+        public virtual IQueryable<T> Get(Expression<Func<T, Boolean>> filter = null)
         {
-            IQueryable<CustomerEntity> query = _customersDbSet;
+            IQueryable<T> query = _dbSet;
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
+
             return query;
         }
 
-        public async Task<CustomerEntity> GetByIdAsync(Int32 id)
+        public virtual async Task<T> GetByIdAsync(Int32 id)
         {
-            return await _customersDbSet.FindAsync(id)
+            return await _dbSet.FindAsync(id)
                 .ConfigureAwait(false);
         }
 
@@ -52,7 +54,7 @@ namespace CustomersDataProvider.DataAccessLayer
 
         public void Dispose()
         {
-            _dbContext.Dispose();
+            _dbContext?.Dispose();
         }
 
         #endregion
