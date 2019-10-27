@@ -1,7 +1,7 @@
-﻿using BusinessLogicLayer.DataTransferObjects;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 
-namespace BusinessLogicLayer.Abstraction
+namespace CustomersDataProvider.BusinessLogicLayer.Abstraction
 {
     public interface ICustomerInfoServiceProvider
     {

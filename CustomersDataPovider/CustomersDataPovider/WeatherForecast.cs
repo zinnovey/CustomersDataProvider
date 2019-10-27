@@ -1,6 +1,6 @@
 using System;
 
-namespace CustomersDataPovider
+namespace CustomersDataPovider.WebAPI
 {
     public class WeatherForecast
     {

@@ -1,8 +1,8 @@
-﻿using DataAccessLayer.Entities;
+﻿using CustomersDataProvider.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccessLayer.Configuration
+namespace CustomersDataProvider.DataAccessLayer.Configuration
 {
     class MigrationHistoryConfiguration : IEntityTypeConfiguration<MigrationHistory>
     {

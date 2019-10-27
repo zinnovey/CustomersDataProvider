@@ -1,11 +1,11 @@
 ﻿using System.Globalization;
 using System.Linq;
-using BusinessLogicLayer.DataTransferObjects;
-using DataAccessLayer.Entities;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
+using CustomersDataProvider.DataAccessLayer.Entities;
 
-namespace BusinessLogicLayer.Converters
+namespace CustomersDataProvider.BusinessLogicLayer.Converters
 {
-    class CustomerInfoConverter
+    public class CustomerInfoConverter
     {
         #region Public
 
@@ -26,7 +26,7 @@ namespace BusinessLogicLayer.Converters
         private static TransactionDTO ConvertTransaction(TransactionEntity transactionEntity) =>
             new TransactionDTO
             {
-                Id = transactionEntity.CustomerId,
+                Id = transactionEntity.Id,
                 Date = transactionEntity.DateTime,
                 Amount = transactionEntity.Amount,
                 Currency = transactionEntity.Currency.ToString(),

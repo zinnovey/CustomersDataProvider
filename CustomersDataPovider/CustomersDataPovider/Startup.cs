@@ -1,15 +1,15 @@
-using BusinessLogicLayer.Abstraction;
-using BusinessLogicLayer.Services;
-using BusinessLogicLayer.Validators;
-using DataAccessLayer;
-using DataAccessLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.Services;
+using CustomersDataProvider.BusinessLogicLayer.Validators;
+using CustomersDataProvider.DataAccessLayer;
+using CustomersDataProvider.DataAccessLayer.Abstraction;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CustomersDataPovider
+namespace CustomersDataPovider.WebAPI
 {
     public class Startup
     {

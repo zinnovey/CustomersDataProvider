@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using DataAccessLayer.Configuration;
-using DataAccessLayer.Entities;
+using CustomersDataProvider.DataAccessLayer.Configuration;
+using CustomersDataProvider.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccessLayer
+namespace CustomersDataProvider.DataAccessLayer
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomersDBContext : DbContext

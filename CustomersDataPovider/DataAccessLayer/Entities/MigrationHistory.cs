@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataAccessLayer.Entities
+namespace CustomersDataProvider.DataAccessLayer.Entities
 {
     public class MigrationHistory
     {

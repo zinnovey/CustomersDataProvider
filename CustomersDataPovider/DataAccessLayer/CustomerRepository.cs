@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using DataAccessLayer.Abstraction;
-using DataAccessLayer.Entities;
+using CustomersDataProvider.DataAccessLayer.Abstraction;
+using CustomersDataProvider.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccessLayer
+namespace CustomersDataProvider.DataAccessLayer
 {
     public sealed class CustomerRepository : ICustomerRepository, IDisposable
     {

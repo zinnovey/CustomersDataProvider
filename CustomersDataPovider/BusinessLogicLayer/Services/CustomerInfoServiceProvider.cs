@@ -1,19 +1,19 @@
 ﻿using System;
-using BusinessLogicLayer.Abstraction;
-using BusinessLogicLayer.Converters;
-using BusinessLogicLayer.DataTransferObjects;
-using DataAccessLayer.Abstraction;
-using DataAccessLayer.Entities;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using CustomersDataProvider.BusinessLogicLayer.Abstraction;
+using CustomersDataProvider.BusinessLogicLayer.Converters;
+using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
+using CustomersDataProvider.DataAccessLayer.Abstraction;
+using CustomersDataProvider.DataAccessLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace BusinessLogicLayer.Services
+namespace CustomersDataProvider.BusinessLogicLayer.Services
 {
     public class CustomerInfoServiceProvider : ICustomerInfoServiceProvider
     {
         #region Fields
 
-        private ICustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         #endregion
 
@@ -32,12 +32,12 @@ namespace BusinessLogicLayer.Services
         {
             CustomerEntity customerEntity;
 
-            //TODO: add logic for getting latest 5 trasactions
+            //TODO: add logic for getting the latest 5 transactions
             if (!String.IsNullOrEmpty(criteria.CustomerID))
             {
                 customerEntity = await _customerRepository.Get(x => x.Id == Int32.Parse(criteria.CustomerID))
                     .Include(x => x.Transactions)
-                    .AsNoTracking<CustomerEntity>()
+                    .AsNoTracking()
                     .SingleOrDefaultAsync()
                     .ConfigureAwait(false);
 
@@ -47,13 +47,13 @@ namespace BusinessLogicLayer.Services
             else
                 customerEntity = await _customerRepository.Get(x => x.ContactEmail == criteria.Email)
                     .Include(x => x.Transactions)
-                    .AsNoTracking<CustomerEntity>()
+                    .AsNoTracking()
                     .SingleOrDefaultAsync()
                     .ConfigureAwait(false);
 
-            if (customerEntity is null) return null;
-
-            return CustomerInfoConverter.ConvertCustomerInfo(customerEntity);
+            return customerEntity is null
+                ? null 
+                : CustomerInfoConverter.ConvertCustomerInfo(customerEntity);
         }
 
         #endregion

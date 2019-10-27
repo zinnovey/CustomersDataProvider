@@ -1,7 +1,7 @@
 ﻿using System;
-using DataAccessLayer.Entities.Enums;
+using CustomersDataProvider.DataAccessLayer.Entities.Enums;
 
-namespace DataAccessLayer.Entities
+namespace CustomersDataProvider.DataAccessLayer.Entities
 {
     public class TransactionEntity : BaseEntity
     {
