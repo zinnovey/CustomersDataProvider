@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using CustomersDataProvider.BusinessLogicLayer.Abstraction;
 using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
@@ -32,8 +33,9 @@ namespace CustomersDataProvider.WebAPI.Controllers
 
         #region Public
 
-        // GET api/<controller>?customerID=1&email=bob@gmail.com
-        [HttpGet]
+        // GET api/<controller>/get?customerID=1&email=bob@gmail.com
+        [HttpGet("/get")]
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
         public async Task<IActionResult> Get([FromQuery]String customerID, [FromQuery]String email)
         {
             var criteria = new CustomerInfoCriteriaDTO

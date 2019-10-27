@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace CustomersDataProvider.WebAPI
 {
@@ -28,6 +29,10 @@ namespace CustomersDataProvider.WebAPI
             services.AddSingleton<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<IQueryParametersValidator, QueryParametersValidator>();
             services.AddSingleton<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer information API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +42,7 @@ namespace CustomersDataProvider.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -45,6 +50,13 @@ namespace CustomersDataProvider.WebAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer information API");
             });
         }
     }
