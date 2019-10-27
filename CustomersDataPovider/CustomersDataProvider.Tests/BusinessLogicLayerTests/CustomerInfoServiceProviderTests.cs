@@ -17,7 +17,7 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
     {
         #region Fields
 
-        private ICustomerInfoServiceProvider _customerInfoServiceProvider;
+        private ICustomerInfoProviderService _customerInfoServiceProvider;
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
         {
             var dbContext = new CustomersDBContext();
             _customerInfoServiceProvider
-                = new CustomerInfoServiceProvider(
+                = new CustomerInfoProviderService(
                     new GenericRepository<CustomerEntity>(dbContext),
                     new GenericRepository<TransactionEntity>(dbContext));
         }

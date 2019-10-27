@@ -15,7 +15,7 @@ namespace CustomersDataProvider.WebAPI.Controllers
         #region Fields
 
         private readonly IQueryParametersValidator _queryParametersValidator;
-        private readonly ICustomerInfoServiceProvider _customerInfoServiceProvider;
+        private readonly ICustomerInfoProviderService _customerInfoServiceProvider;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace CustomersDataProvider.WebAPI.Controllers
 
         public CustomerInfoController(
             IQueryParametersValidator queryParametersValidator,
-            ICustomerInfoServiceProvider customerInfoServiceProvider)
+            ICustomerInfoProviderService customerInfoServiceProvider)
         {
             _queryParametersValidator = queryParametersValidator;
             _customerInfoServiceProvider = customerInfoServiceProvider;

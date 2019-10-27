@@ -29,7 +29,7 @@ namespace CustomersDataProvider.WebAPI
             services.AddScoped<CustomersDBContext>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddSingleton<IQueryParametersValidator, QueryParametersValidator>();
-            services.AddScoped<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
+            services.AddScoped<ICustomerInfoProviderService, CustomerInfoProviderService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer information API", Version = "v1" });

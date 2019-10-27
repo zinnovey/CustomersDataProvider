@@ -11,7 +11,7 @@ VALUES ('Fred', 'fred@gmail.com', 380965333721)
 
 
 INSERT INTO Transactions (CustomerID, TransactionDateTime, TransactionAmount, TransactionCurrency, TransactionStatus)
-VALUES (1, '2007-05-08 12:35:29', 151345.54, 44, 0)
+VALUES (1, '2007-05-08 12:34:29', 151345.54, 44, 0)
 
 INSERT INTO Transactions (CustomerID, TransactionDateTime, TransactionAmount, TransactionCurrency, TransactionStatus)
 VALUES (1, '2007-05-08 12:35:29', 123.22, 44, 0)
@@ -26,7 +26,7 @@ INSERT INTO Transactions (CustomerID, TransactionDateTime, TransactionAmount, Tr
 VALUES (1, '2007-05-08 12:35:29', 121312.25, 44, 0)
 
 INSERT INTO Transactions (CustomerID, TransactionDateTime, TransactionAmount, TransactionCurrency, TransactionStatus)
-VALUES (1, '2007-05-08 12:35:29', 4634.43, 44, 0)
+VALUES (1, '2007-05-08 12:36:29', 4634.43, 44, 0)
 
 
 
