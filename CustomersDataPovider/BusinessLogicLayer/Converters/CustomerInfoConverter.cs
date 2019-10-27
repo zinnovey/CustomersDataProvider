@@ -5,7 +5,7 @@ using CustomersDataProvider.DataAccessLayer.Entities;
 
 namespace CustomersDataProvider.BusinessLogicLayer.Converters
 {
-    class CustomerInfoConverter
+    public class CustomerInfoConverter
     {
         #region Public
 
@@ -26,7 +26,7 @@ namespace CustomersDataProvider.BusinessLogicLayer.Converters
         private static TransactionDTO ConvertTransaction(TransactionEntity transactionEntity) =>
             new TransactionDTO
             {
-                Id = transactionEntity.CustomerId,
+                Id = transactionEntity.Id,
                 Date = transactionEntity.DateTime,
                 Amount = transactionEntity.Amount,
                 Currency = transactionEntity.Currency.ToString(),

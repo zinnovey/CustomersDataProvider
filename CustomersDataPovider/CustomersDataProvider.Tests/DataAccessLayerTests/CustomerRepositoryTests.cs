@@ -21,10 +21,8 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
         #region SetUp
 
         [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            _customerRepository = new CustomerRepository(new CustomersDBContext());
-        }
+        public void OneTimeSetUp() 
+            => _customerRepository = new CustomerRepository(new CustomersDBContext());
 
         #endregion
 
