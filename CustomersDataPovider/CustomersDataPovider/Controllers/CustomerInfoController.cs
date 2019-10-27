@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CustomersDataProvider.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class CustomerInfoController : Controller
     {
         #region Fields
@@ -33,8 +33,8 @@ namespace CustomersDataProvider.WebAPI.Controllers
 
         #region Public
 
-        // GET api/<controller>/get?customerID=1&email=bob@gmail.com
-        [HttpGet("/get")]
+        // GET Api/CustomerInfo/Get?customerID=1&email=bob@gmail.com
+        [HttpGet]
         [SuppressMessage("ReSharper", "InconsistentNaming")]
         public async Task<IActionResult> Get([FromQuery]String customerID, [FromQuery]String email)
         {
