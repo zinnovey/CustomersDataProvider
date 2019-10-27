@@ -5,7 +5,9 @@ using CustomersDataProvider.BusinessLogicLayer.Abstraction;
 using CustomersDataProvider.BusinessLogicLayer.DataTransferObjects;
 using CustomersDataProvider.BusinessLogicLayer.Services;
 using CustomersDataProvider.DataAccessLayer;
+using CustomersDataProvider.DataAccessLayer.Entities;
 using CustomersDataProvider.DataAccessLayer.Entities.Enums;
+using CustomersDataProvider.DataAccessLayer.Repositories;
 using NUnit.Framework;
 
 namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
@@ -20,11 +22,17 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
         #endregion
 
         #region SetUp
-        
+
         [OneTimeSetUp]
-        public void OneTimeSetUp() =>
-            _customerInfoServiceProvider 
-                = new CustomerInfoServiceProvider(new CustomerRepository(new CustomersDBContext()));
+        public void OneTimeSetUp()
+        {
+            var dbContext = new CustomersDBContext();
+            _customerInfoServiceProvider
+                = new CustomerInfoServiceProvider(
+                    new GenericRepository<CustomerEntity>(dbContext),
+                    new GenericRepository<TransactionEntity>(dbContext));
+        }
+            
 
         #endregion
 

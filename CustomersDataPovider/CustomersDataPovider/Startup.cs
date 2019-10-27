@@ -3,6 +3,7 @@ using CustomersDataProvider.BusinessLogicLayer.Services;
 using CustomersDataProvider.BusinessLogicLayer.Validators;
 using CustomersDataProvider.DataAccessLayer;
 using CustomersDataProvider.DataAccessLayer.Abstraction;
+using CustomersDataProvider.DataAccessLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,10 +26,10 @@ namespace CustomersDataProvider.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<CustomersDBContext>();
-            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<CustomersDBContext>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddSingleton<IQueryParametersValidator, QueryParametersValidator>();
-            services.AddSingleton<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
+            services.AddScoped<ICustomerInfoServiceProvider, CustomerInfoServiceProvider>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer information API", Version = "v1" });

@@ -13,15 +13,18 @@ namespace CustomersDataProvider.BusinessLogicLayer.Services
     {
         #region Fields
 
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IRepository<CustomerEntity> _customerRepository;
+        private readonly IRepository<TransactionEntity> _transactionRepository;
 
         #endregion
 
         #region Constructors
 
-        public CustomerInfoServiceProvider(ICustomerRepository customerRepository)
+        public CustomerInfoServiceProvider(IRepository<CustomerEntity> customerRepository,
+            IRepository<TransactionEntity> transactionRepository)
         {
             _customerRepository = customerRepository;
+            _transactionRepository = transactionRepository;
         }
 
         #endregion
