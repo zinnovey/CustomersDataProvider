@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CustomersDataProvider.DataAccessLayer;
 using CustomersDataProvider.DataAccessLayer.Abstraction;
 using CustomersDataProvider.DataAccessLayer.Entities;
-using CustomersDataProvider.DataAccessLayer.Entities.Enums;
 using CustomersDataProvider.DataAccessLayer.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
@@ -22,8 +19,8 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
 
         #region SetUp
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp() 
+        [SetUp]
+        public void SetUp() 
             => _customerRepository = new GenericRepository<CustomerEntity>(new CustomersDBContext());
 
         #endregion
@@ -36,11 +33,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
             var customer = await _customerRepository.GetByIdAsync(1)
                 .ConfigureAwait(false);
 
-            Assert.NotNull(customer);
-
-            Assert.AreEqual("Bob", customer.Name);
-            Assert.AreEqual("bob@gmail.com", customer.ContactEmail);
-            Assert.AreEqual(38096074410, customer.MobileNumber);
+            AssertFirstCustomer(customer);
         }
 
         [Test]
@@ -64,11 +57,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
                 .SingleOrDefaultAsync()
                 .ConfigureAwait(false);
 
-            Assert.NotNull(customer);
-
-            Assert.AreEqual("Bob", customer.Name);
-            Assert.AreEqual("bob@gmail.com", customer.ContactEmail);
-            Assert.AreEqual(38096074410, customer.MobileNumber);
+            AssertFirstCustomer(customer);
         }
 
         [Test]
@@ -82,38 +71,17 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
             Assert.AreEqual(null, customer);
         }
 
-        [Test]
-        public async Task GetTest3()
+        #endregion
+
+        #region Private 
+
+        private void AssertFirstCustomer(CustomerEntity customer)
         {
-            var customer = await _customerRepository.Get(x => x.Id == 1)
-                .Include(x => x.Transactions)
-                .AsNoTracking()
-                .SingleOrDefaultAsync()
-                .ConfigureAwait(false);
-
             Assert.NotNull(customer);
-            Assert.NotNull(customer.Transactions);
 
-            var transaction = customer.Transactions.First();
-            Assert.NotNull(transaction);
-
-            Assert.AreEqual(1, transaction.CustomerId);
-            Assert.AreEqual(new DateTime(2007,5, 8, 12,34,0), transaction.DateTime);
-            Assert.AreEqual(151345.54, transaction.Amount);
-            Assert.AreEqual(Currency.EUR, transaction.Currency);
-            Assert.AreEqual(TransactionStatus.Success, transaction.Status);
-        }
-
-        [Test]
-        public async Task GetTest4()
-        {
-            var customer = await _customerRepository.Get(x => x.Id == 1)
-                .AsNoTracking()
-                .SingleOrDefaultAsync()
-                .ConfigureAwait(false);
-
-            Assert.NotNull(customer);
-            Assert.AreEqual(0, customer.Transactions.Count);
+            Assert.AreEqual("Bob", customer.Name);
+            Assert.AreEqual("bob@gmail.com", customer.ContactEmail);
+            Assert.AreEqual(38096074410, customer.MobileNumber);
         }
 
         #endregion

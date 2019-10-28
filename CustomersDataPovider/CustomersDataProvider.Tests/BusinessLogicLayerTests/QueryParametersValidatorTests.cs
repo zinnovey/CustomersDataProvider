@@ -18,8 +18,8 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
 
         #region SetUp
 
-        [OneTimeSetUp]
-        public void OneTimeSetUp() 
+        [SetUp]
+        public void SetUp() 
             => _queryParametersValidator = new QueryParametersValidator();
 
         #endregion
