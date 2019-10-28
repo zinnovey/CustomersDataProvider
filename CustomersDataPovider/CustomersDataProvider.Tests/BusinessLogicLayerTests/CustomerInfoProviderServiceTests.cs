@@ -21,8 +21,8 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
         #region Fields
 
         private ICustomerInfoProviderService _customerInfoServiceProvider;
-        private Mock<IRepository<CustomerEntity>> _customerRepositoryMoq;
-        private Mock<IRepository<TransactionEntity>> _transactionRepositoryMoq;
+        private Mock<IRepository<CustomerEntity>> _customerRepositoryMock;
+        private Mock<IRepository<TransactionEntity>> _transactionRepositoryMock;
 
         #endregion
 
@@ -31,8 +31,8 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
         [SetUp]
         public void SetUp()
         {
-            _customerRepositoryMoq = new Mock<IRepository<CustomerEntity>>();
-            _transactionRepositoryMoq = new Mock<IRepository<TransactionEntity>>();
+            _customerRepositoryMock = new Mock<IRepository<CustomerEntity>>();
+            _transactionRepositoryMock = new Mock<IRepository<TransactionEntity>>();
         }
             
 
@@ -318,22 +318,22 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
                 }
             };
 
-            _customerRepositoryMoq
+            _customerRepositoryMock
                 .Setup(x => x.Get(It.IsAny<Expression<Func<CustomerEntity, Boolean>>>()))
                 .Returns(customersList.AsQueryable().BuildMock().Object);
 
-            _transactionRepositoryMoq
+            _transactionRepositoryMock
                 .Setup(x => x.Get(It.IsAny<Expression<Func<TransactionEntity, Boolean>>>()))
                 .Returns(transactionsList.AsQueryable().BuildMock().Object);
         }
 
         private void SetUpMocksForEmptyResult()
         {
-            _customerRepositoryMoq
+            _customerRepositoryMock
                 .Setup(x => x.Get(It.IsAny<Expression<Func<CustomerEntity, Boolean>>>()))
                 .Returns(new List<CustomerEntity>().AsQueryable().BuildMock().Object);
 
-            _transactionRepositoryMoq
+            _transactionRepositoryMock
                 .Setup(x => x.Get(It.IsAny<Expression<Func<TransactionEntity, Boolean>>>()))
                 .Returns(new List<TransactionEntity>().AsQueryable().BuildMock().Object);
         }
@@ -341,28 +341,28 @@ namespace CustomersDataProvider.Tests.BusinessLogicLayerTests
         private void SetUpProviderService()
         {
             _customerInfoServiceProvider 
-                = new CustomerInfoProviderService(_customerRepositoryMoq.Object, 
-                    _transactionRepositoryMoq.Object);
+                = new CustomerInfoProviderService(_customerRepositoryMock.Object,
+                    _transactionRepositoryMock.Object);
         }
 
         private void VerifyMocksForFirstCustomer()
         {
-            _customerRepositoryMoq.Verify(
+            _customerRepositoryMock.Verify(
                 x => x.Get(It.IsAny<Expression<Func<CustomerEntity, Boolean>>>()), 
                 Times.Once);
 
-            _transactionRepositoryMoq.Verify(
+            _transactionRepositoryMock.Verify(
                 x => x.Get(It.IsAny<Expression<Func<TransactionEntity, Boolean>>>()),
                 Times.Once);
         }
 
         private void VerifyMocksForEmptyResult()
         {
-            _customerRepositoryMoq.Verify(
+            _customerRepositoryMock.Verify(
                 x => x.Get(It.IsAny<Expression<Func<CustomerEntity, Boolean>>>()),
                 Times.Once);
 
-            _transactionRepositoryMoq.Verify(
+            _transactionRepositoryMock.Verify(
                 x => x.Get(It.IsAny<Expression<Func<TransactionEntity, Boolean>>>()),
                 Times.Never);
         }
