@@ -5,6 +5,8 @@ namespace CustomersDataProvider.WebAPI
 {
     public class Program
     {
+        #region Public
+
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -16,5 +18,8 @@ namespace CustomersDataProvider.WebAPI
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        #endregion
+
     }
 }
