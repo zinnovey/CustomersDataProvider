@@ -1,13 +1,28 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using CustomersDataProvider.DataAccessLayer.Configuration;
 using CustomersDataProvider.DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CustomersDataProvider.DataAccessLayer
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class CustomersDBContext : DbContext
     {
+        #region Constants
+
+        private const String ConnectionStringName = "CustomersDB";
+        private const String DefaultConnectionString = "Data Source=DESKTOP-B4S3HSP\\SQLEXPRESS;Initial Catalog=Customers;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+        #endregion    
+
+        #region Fields
+
+        private readonly IConfiguration _configuration;
+
+        #endregion
+
         #region Properties
 
         public virtual DbSet<CustomerEntity> Customers { get; set; }
@@ -20,14 +35,12 @@ namespace CustomersDataProvider.DataAccessLayer
 
         #region Constructors
 
-        public CustomersDBContext()
-        {
-        }
+        public CustomersDBContext(IConfiguration configuration) 
+            => _configuration = configuration;
 
-        public CustomersDBContext(DbContextOptions<CustomersDBContext> options)
-            : base(options)
-        {
-        }
+        public CustomersDBContext(DbContextOptions<CustomersDBContext> options, IConfiguration configuration)
+            : base(options) =>
+            _configuration = configuration;
 
         #endregion
 
@@ -36,10 +49,8 @@ namespace CustomersDataProvider.DataAccessLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-                //TODO: move to config
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-B4S3HSP\\SQLEXPRESS;Initial Catalog=Customers;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            }
+                optionsBuilder.UseSqlServer(_configuration?.GetConnectionString(ConnectionStringName) 
+                                            ?? DefaultConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
