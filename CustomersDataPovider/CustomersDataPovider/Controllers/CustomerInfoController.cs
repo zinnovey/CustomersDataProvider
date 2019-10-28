@@ -57,7 +57,6 @@ namespace CustomersDataProvider.WebAPI.Controllers
         }
 
         #endregion
-
-
+        
     }
 }

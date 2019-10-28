@@ -23,7 +23,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
 
         [OneTimeSetUp]
         public void SetUp()
-            => _transactionRepository = new GenericRepository<TransactionEntity>(new CustomersDBContext());
+            => _transactionRepository = new GenericRepository<TransactionEntity>(new CustomersDBContext(null));
 
         #endregion
 

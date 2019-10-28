@@ -21,7 +21,7 @@ namespace CustomersDataProvider.Tests.DataAccessLayerTests
 
         [SetUp]
         public void SetUp() 
-            => _customerRepository = new GenericRepository<CustomerEntity>(new CustomersDBContext());
+            => _customerRepository = new GenericRepository<CustomerEntity>(new CustomersDBContext(null));
 
         #endregion
 

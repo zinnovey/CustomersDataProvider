@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CustomersDataProvider.DataAccessLayer.Configuration
 {
-    class MigrationHistoryConfiguration : IEntityTypeConfiguration<MigrationHistory>
+    sealed class MigrationHistoryConfiguration : IEntityTypeConfiguration<MigrationHistory>
     {
         #region IEntityTypeConfiguration
 

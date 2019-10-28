@@ -6,7 +6,6 @@ using CustomersDataProvider.DataAccessLayer.Abstraction;
 using CustomersDataProvider.DataAccessLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -15,21 +14,18 @@ namespace CustomersDataProvider.WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        #region Public
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddScoped<CustomersDBContext>();
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
             services.AddSingleton<IQueryParametersValidator, QueryParametersValidator>();
             services.AddScoped<ICustomerInfoProviderService, CustomerInfoProviderService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Customer information API", Version = "v1" });
@@ -43,10 +39,8 @@ namespace CustomersDataProvider.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-            app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
@@ -60,5 +54,8 @@ namespace CustomersDataProvider.WebAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Customer information API");
             });
         }
+
+        #endregion
+
     }
 }

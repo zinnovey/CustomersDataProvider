@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CustomersDataProvider.DataAccessLayer.Configuration
 {
-    class TransactionEntityConfiguration : IEntityTypeConfiguration<TransactionEntity>
+    sealed class TransactionEntityConfiguration : IEntityTypeConfiguration<TransactionEntity>
     {
         #region IEntityTypeConfiguration
 
